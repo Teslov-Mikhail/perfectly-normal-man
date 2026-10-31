@@ -81,3 +81,24 @@ polarbear_on_character_created = {
 		}
 	}
 }
+
+
+# ----------------------- Yearly Random Flavour Events ----------------------- #
+
+random_yearly_playable_pulse = {
+    on_actions = {
+        yearly_polarbear_flavour_events
+        delay = { days = { 1 14 } }
+    }
+}
+
+yearly_polarbear_flavour_events = {
+    trigger = {
+        has_trait = polarbear_trait
+    }
+
+    random_events = {
+        200 = 0
+        1 = polarbearminor.0010 # Can I pet that dawg?
+    }
+}

@@ -45,7 +45,7 @@
 
 
  polarbearminor.0010.t: "Can I Pet That... Person?"
- polarbearminor.0010.desc: "As I was enjoying a quit stroll by myself, I suddenly hear a high pitched sound call out to me!\n\n“#EMP Can I pet dat dawg?#!”\n\nQuickly turning around I find myself face to face with a small child! Before I am able to comprehend the question asked to me, [petting_child.GetFirstName] repeats [petting_child.GetHerselfHimself]: “#EMP Can I pet dat dawg?#!”\n\nFor some reason you cannot understand, this tiny human wants to... pet you. Has... has [petting_child.GetFirstNameNoTooltip] managed to see through your impeccable disguise!? Also where are the parents of this thing!?"
+ polarbearminor.0010.desc: "As I was enjoying a quiet stroll by myself, I suddenly hear a high pitched sound call out to me!\n\n“#EMP Can I pet dat dawg?#!”\n\nQuickly turning around I find myself face to face with a small child! Before I am able to comprehend the question asked to me, [petting_child.GetFirstName] repeats [petting_child.GetHerselfHimself]: “#EMP Can I pet dat dawg?#!”\n\nFor some reason you cannot understand, this tiny human wants to... pet you. Has... has [petting_child.GetFirstNameNoTooltip] managed to see through your impeccable disguise!? Also where are the parents of this thing!?"
  
  polarbearminor.0010.a: "Indulge the Child"
  polarbearminor.0010.a_flavour: "Children are gross..."
