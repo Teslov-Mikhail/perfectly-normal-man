@@ -6,16 +6,60 @@ polarbear.0001 = {
 	trigger = {
 		OR = {
 			real_father = {
-				culture = culture:polarbear
+				culture = {
+					has_cultural_pillar = heritage_polarbear
+				}
 			}
 			mother = {
-				culture = culture:polarbear
+				culture = {
+					has_cultural_pillar = heritage_polarbear
+				}
 			}
 		}
 	}
 	immediate = {
 		add_trait = polarbear_trait
-		set_culture = culture:polarbear
+		if = {
+			limit = {
+				NOT = {
+					culture = {
+						has_cultural_pillar = heritage_polarbear
+					}
+				}
+			}
+			if = {
+				limit = { # if not both bears, take bear parent culture
+					NAND = {
+						real_father = {
+							culture = {
+								has_cultural_pillar = heritage_polarbear
+							}
+						}
+						mother = {
+							culture = {
+								has_cultural_pillar = heritage_polarbear
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						real_father = {
+							culture = {
+								has_cultural_pillar = heritage_polarbear
+							}	
+						}
+					}
+					set_culture = real_father.culture
+				}
+				else = {
+					set_culture = mother.culture
+				}
+			}
+			else = {
+				set_culture = mother.culture # if both parents bear take after mother
+			}
+		}
 		add_secret = {
 			type = secret_polar_bear
 		}
@@ -28,7 +72,9 @@ polarbear.0002 = {
 	immediate = {
 		every_living_character = {
 			limit = {
-				culture = culture:polarbear
+				culture = {
+					has_cultural_pillar = heritage_polarbear
+				}
 				NOT = {
 					has_trait = polarbear_trait
 				}
@@ -47,11 +93,22 @@ polarbear.0003 = {
 	trigger = {
 		OR = {
 			has_trait = polarbear_trait
-			culture = culture:polarbear
+			culture = {
+				has_cultural_pillar = heritage_polarbear
+			}
 		}
 	}
 	immediate = {
-		set_culture = culture:polarbear
+		if = {
+			limit = {
+				NOT = {
+					culture = {
+						has_cultural_pillar = heritage_polarbear
+					}
+				}
+			}
+			set_culture = culture:polarbear
+		}
 		add_trait = polarbear_trait
 		add_secret = {
 			type = secret_polar_bear

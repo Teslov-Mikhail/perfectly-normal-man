@@ -69,7 +69,9 @@ polarbear_on_character_created = {
 	effect = {
 		if = {
 			limit = {
-				culture = culture:polarbear
+				culture = {
+                    has_cultural_pillar = heritage_polarbear
+                }
 				NOT = {
 					has_trait = polarbear_trait
 				}
