@@ -1,0 +1,35 @@
+﻿embrace_panda_bear_culture_ruler_amount_req_value = 5
+embrace_panda_bear_culture_opinion_req_value = 50
+
+embrace_panda_bear_culture_current_valid_ruler_value = {
+	value = 0
+	every_ruler = {
+		limit = {
+			culture = scope:selected_item
+			highest_held_title_tier >= tier_duchy
+			opinion = {
+				target = root
+				value >= embrace_panda_bear_culture_opinion_req_value
+			}
+		}
+		add = 1
+	}
+}
+
+blend_in_with_panda_ruler_amount_req_value = 3
+blend_in_with_panda_opinion_req_value = 20
+
+blend_in_with_panda_current_valid_ruler_value = {
+	value = 0
+	every_ruler = {
+		limit = {
+			culture = scope:selected_item
+			highest_held_title_tier >= tier_duchy
+			opinion = {
+				target = root
+				value >= blend_in_with_panda_opinion_req_value
+			}
+		}
+		add = 1
+	}
+}

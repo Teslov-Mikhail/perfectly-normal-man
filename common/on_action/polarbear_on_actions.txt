@@ -69,7 +69,9 @@ polarbear_on_character_created = {
 	effect = {
 		if = {
 			limit = {
-				culture = culture:polarbear
+				culture = {
+                    has_cultural_pillar = heritage_polarbear
+                }
 				NOT = {
 					has_trait = polarbear_trait
 				}
@@ -85,20 +87,38 @@ polarbear_on_character_created = {
 
 # ----------------------- Yearly Random Flavour Events ----------------------- #
 
-random_yearly_playable_pulse = {
+quarterly_playable_pulse = {
     on_actions = {
-        yearly_polarbear_flavour_events
         delay = { days = { 1 14 } }
+        quarterly_polarbear_flavour_events
     }
 }
 
-yearly_polarbear_flavour_events = {
+quarterly_polarbear_flavour_events = {
     trigger = {
         has_trait = polarbear_trait
     }
 
     random_events = {
         200 = 0
-        1 = polarbearminor.0010 # Can I pet that dawg?
+        2 = polarbearminor.0010 # Can I pet that dawg?
     }
 }
+
+# random_yearly_playable_pulse = {
+#     on_actions = {
+#         yearly_polarbear_flavour_events
+#         delay = { days = { 1 14 } }
+#     }
+# }
+
+# yearly_polarbear_flavour_events = {
+#     trigger = {
+#         has_trait = polarbear_trait
+#     }
+
+#     random_events = {
+#         200 = 0
+#         1 = polarbearminor.0010 # Can I pet that dawg?
+#     }
+# }
