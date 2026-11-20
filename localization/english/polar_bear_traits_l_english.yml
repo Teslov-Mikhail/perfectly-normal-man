@@ -19,6 +19,41 @@
  secret_polar_bear_desc:0 "Is a Polar Bear"
  secret_polar_bear_tooltip_desc:0 "You are a polar bear, and you have been hiding this fact from everyone. Most believe you are a perfectly normal person, but you are actually, in fact, a polar bear. Should this secret be revealed then you will most certainly face a consequence, possibly. Or you might be able to play it off as so unbelievable that no one would bat an eye."
 
+ # ---------------------------------------------------------------------------- #
+ #                                    CULTURE                                   #
+ # ---------------------------------------------------------------------------- #
+
+ panda_bear: "Panda Bear"
+ panda_bear_prefix: "Panda Bear"
+ panda_bear_collective_noun: "herd of Panda Bears"
+
+ # ---------------------------------------------------------------------------- #
+ #                                   DECISIONS                                  #
+ # ---------------------------------------------------------------------------- #
+
+ decision_group_type_bear_decisions_group: "Perfectly Normal Decisions"
+
+ # ----------------------- Start Blending in with Pandas ---------------------- #
+
+ start_blending_in_with_the_panda_decision: "Start Blending in with the Locals"
+ start_blending_in_with_the_panda_decision_desc: "I find myself in a strange land. If I am to keep up my guise, I need to find a way to start blending in with the locals..."
+ start_blending_in_with_the_panda_decision_confirm: "Perfect..."
+ start_blending_in_with_the_panda_decision_tooltip: "We need to find a suitable locals to blend in with..."
+
+ blend_with_panda_decision_tt: "[cultural_acceptance|E] needed to [hybridize|E] with [selected_item.GetName] reduced by #color_white 25%#! and can [hybridize|E] with [selected_item.GetNameNoTooltip] even if no [counties|E] in your [realm|E] has the [culture|E]"
+
+ blend_in_with_panda_ruler_req_tt: "At least [SCOPE.ScriptValue('blend_in_with_panda_ruler_amount_req_value')|0V] [duchy|E] [rank|E] or higher [rulers|E] of the [selected_item.GetNameNoTooltip] [culture|E] must have at least [SCOPE.ScriptValue('blend_in_with_panda_opinion_req_value')|0V] [opinion|E] of you #weak (Current [SCOPE.ScriptValue('blend_in_with_panda_current_valid_ruler_value')|0V]/[SCOPE.ScriptValue('blend_in_with_panda_ruler_amount_req_value')|0V])#!"
+
+ # ------------------------ Embrace Panda Bear Culture ------------------------ #
+
+ embrace_panda_bear_culture_decision: "Embrace Panda Bear Culture"
+ embrace_panda_bear_culture_decision_desc: "We have come to a far and exotic land. We will not forget our origins and culture, but mayhaps we should embrace our new place here?"
+ embrace_panda_bear_culture_decision_tooltip: "You have come to a far and strange land, but maybe you can manage to blend in with the locals..."
+ embrace_panda_bear_culture_decision_confirm: "Time to blend in"
+
+ embrace_panda_bear_culture_ruler_req_tt: "At least [SCOPE.ScriptValue('embrace_panda_bear_culture_ruler_amount_req_value')|0V] [duchy|E] [rank|E] or higher [rulers|E] of the [selected_item.GetNameNoTooltip] [culture|E] must have at least [SCOPE.ScriptValue('embrace_panda_bear_culture_opinion_req_value')|0V] [opinion|E] of you #weak (Current [SCOPE.ScriptValue('embrace_panda_bear_culture_current_valid_ruler_value')|0V]/[SCOPE.ScriptValue('embrace_panda_bear_culture_ruler_amount_req_value')|0V])#!"
+
+ every_polar_bear_vassal_or_below: "Every Polar Bear vassal or below"
 
  # ---------------------------------------------------------------------------- #
  #                                   MODIFIERS                                  #
@@ -47,9 +82,9 @@
  polarbearminor.0010.t: "Can I Pet That... Person?"
  polarbearminor.0010.desc: "As I was enjoying a quiet stroll by myself, I suddenly hear a high pitched sound call out to me!\n\n“#EMP Can I pet dat dawg?#!”\n\nQuickly turning around I find myself face to face with a small child! Before I am able to comprehend the question asked to me, [petting_child.GetFirstName] repeats [petting_child.GetHerselfHimself]: “#EMP Can I pet dat dawg?#!”\n\nFor some reason you cannot understand, this tiny human wants to... pet you. Has... has [petting_child.GetFirstNameNoTooltip] managed to see through your impeccable disguise!? Also where are the parents of this thing!?"
  
- polarbearminor.0010.a: "Indulge the Child"
+ polarbearminor.0010.a: "Indulge the child"
  polarbearminor.0010.a_flavour: "Children are gross..."
- polarbearminor.0010.b: "Reject the Child"
- polarbearminor.0010.c: "#S Roar#! at Child!"
- polarbearminor.0010.d: "Free Meal!"
+ polarbearminor.0010.b: "Reject the child"
+ polarbearminor.0010.c: "#S Roar#! at the child!"
+ polarbearminor.0010.d: "#N Eat#! the child!"
  polarbearminor.0010.d_flavour: "Should you eat one of your own so easily?"
