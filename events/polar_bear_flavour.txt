@@ -93,7 +93,7 @@ polarbearminor.0010 = { # Can I pet that dawg?
 		camera = camera_event_center_pointing_forward_fov35
 	}
 
-	cooldown = { years = 20 }
+	cooldown = { years = 50 }
 
 	trigger = {
 		is_location_valid_for_travel_event_on_land = yes # Must on a valid province

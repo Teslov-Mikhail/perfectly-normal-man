@@ -115,3 +115,62 @@ polarbear.0003 = {
 		}
 	}
 }
+
+polarbear.0100 = {
+	hidden = yes
+	immediate = {
+		set_culture = scope:new_culture
+		if = {
+			limit = { any_spouse = { is_playable_character = no } }
+			every_spouse = {
+				limit = {
+					is_playable_character = no
+					culture = culture:polarbear
+				}
+				set_culture = scope:new_culture
+			}
+		}
+		every_close_family_member = {
+			limit = {
+				is_playable_character = no
+			}
+			custom = all_unlanded_family_members
+			set_culture = scope:new_culture
+		}
+		every_child = {
+			custom = all_children_custom
+			set_culture = scope:new_culture
+		}
+	
+		#Convert appropriate vassals, and their family
+		every_vassal_or_below = {
+			custom = every_polar_bear_vassal_or_below
+			limit = {
+				is_ai = yes
+				culture = culture:polarbear
+			}
+			set_culture = scope:new_culture
+			hidden_effect = {
+				if = {
+					limit = { any_spouse = { is_playable_character = no } }
+					every_spouse = {
+						limit = {
+							is_playable_character = no
+							culture = culture:polarbear
+						}
+						set_culture = scope:new_culture
+					}
+				}
+				every_close_family_member = {
+					limit = {
+						is_playable_character = no
+					}
+					set_culture = scope:new_culture
+				}
+				every_child = {
+					set_culture = scope:new_culture
+				}
+			}
+		}
+	}
+}

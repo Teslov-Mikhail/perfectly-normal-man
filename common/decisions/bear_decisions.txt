@@ -5,6 +5,8 @@
 	desc = polar_bear_transformation_desc
 	selection_tooltip = polar_bear_transformation_tooltip
 
+	decision_group_type = bear_decisions_group
+
 	ai_check_interval = 0
 
 	is_shown = {
@@ -19,6 +21,282 @@
 	effect = {
 		add_trait = polarbear_trait
 		set_culture = culture:polarbear
+	}
+	
+	ai_potential = {
+		always = no
+	}
+
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+embrace_panda_bear_culture_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_polar_bear.dds"
+	}
+	desc = embrace_panda_bear_culture_decision_desc
+
+	decision_group_type = bear_decisions_group
+
+	ai_check_interval = 0
+
+	is_shown = {
+		culture = culture:polarbear
+		# Any title you hold is in China region if you are Landed
+		trigger_if = {
+			limit = { 
+				is_landed = yes
+			}
+			OR = {
+				any_realm_province = {
+					geographical_region = world_asia_china
+				}
+				culture_overlaps_geographical_region = world_asia_china
+			}
+		}
+		# Your current location must be inside China region if you are landless
+		trigger_else = {
+			location ?= {
+				geographical_region = world_asia_china
+			}
+		}
+		# Can only do it once
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:embrace_panda_bear_culture_decision
+			}
+		}
+	}
+
+	is_valid = {
+		trigger_if = {
+			limit = { 
+				has_legitimacy = yes
+			}
+			legitimacy_level >= 4
+		}
+		prestige_level >= 4
+		OR = {
+			culture = {
+				cultural_acceptance = { target = scope:selected_item value >= 50 }
+			}
+			custom_tooltip = {
+				text = embrace_panda_bear_culture_ruler_req_tt
+				any_ruler = {
+					count >= embrace_panda_bear_culture_ruler_amount_req_value
+					culture = scope:selected_item
+					highest_held_title_tier >= tier_duchy
+					opinion = {
+						target = root
+						value >= embrace_panda_bear_culture_opinion_req_value
+					}
+				}
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_available_adult = yes
+	}
+
+	cost = {
+		prestige = {
+			value = 5000
+		}
+		treasury_or_gold = {
+			value = 1000
+		}
+	}
+
+	widget = {
+		gui = "decision_view_widget_select_valid_polar_bear_culture"
+		controller = select_scope_object
+		show_from_start = yes
+		decision_to_second_step_button = "SELECT"
+
+		setup_items = {
+			every_culture_global = {
+				limit = {
+					culture_overlaps_geographical_region = world_asia_china
+					has_cultural_pillar = heritage_chinese 
+				}
+				add_to_list = item_list
+			}
+		}
+
+		default_item = {
+			random_culture_global = {
+				limit = {
+					culture_overlaps_geographical_region = world_asia_china
+				}
+				save_scope_as = selected_item
+			}
+		}
+
+		is_item_valid = {
+			scope:actor.culture != this
+			NOT = { has_same_culture_heritage = scope:actor.culture }
+		}
+	}
+
+	effect = {
+		# Can only do it once
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:embrace_panda_bear_culture_decision
+		}
+
+		create_hybrid_culture = scope:selected_item
+
+		# There are a few limitations due to hybridizing like this, so we have to do a bit of manual work.
+		scope:new_culture ?= {
+			set_culture_name = {
+				noun = panda_bear
+				prefix = panda_bear_prefix
+				collective_noun = panda_bear_collective_noun
+			}
+			get_all_innovations_from = culture:polarbear
+			get_all_innovations_from = scope:selected_item
+			set_ethos_from = scope:selected_item
+			set_heritage_from = culture:polarbear
+			set_language_from = culture:polarbear
+			set_martial_custom_from = culture:polarbear	
+			scope:selected_item = {
+				every_tradition = {
+					scope:new_culture ?= {
+						add_culture_tradition = prev
+					}
+				}
+			}
+			culture:polarbear = {
+				every_tradition = {
+					scope:new_culture ?= {
+						add_culture_tradition = prev
+					}
+				}
+			}
+			if = {
+				limit = { has_cultural_tradition = tradition_isolationist }
+				remove_culture_tradition = tradition_isolationist
+			}
+			if = {
+				limit = { has_cultural_tradition = tradition_winter_warriors }
+				remove_culture_tradition = tradition_winter_warriors
+			}
+			if = {
+				limit = { has_cultural_tradition = tradition_mpo_northern_tribes }
+				remove_culture_tradition = tradition_mpo_northern_tribes
+			}
+		}
+
+		trigger_event = polarbear.0100 # the Culture conversion completely breaks if done under the same effect for some reason, so we trigger a new hidden event to handle conversion
+	}
+	
+	ai_potential = {
+		always = no
+	}
+
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+start_blending_in_with_the_panda_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_polar_bear.dds"
+	}
+	desc = start_blending_in_with_the_panda_decision_desc
+
+	decision_group_type = bear_decisions_group
+
+	ai_check_interval = 0
+
+	is_shown = {
+		culture = culture:polarbear
+		NOT = { exists = var:special_culture }
+		has_dlc_feature = hybridize_culture
+	}
+
+	is_valid = {
+		OR = {
+			intrigue >= 15
+			culture = {
+				cultural_acceptance = { target = scope:selected_item value >= 20 }
+			}
+			custom_tooltip = {
+				text = blend_in_with_panda_ruler_req_tt
+				any_ruler = {
+					count >= blend_in_with_panda_ruler_amount_req_value
+					culture = scope:selected_item
+					highest_held_title_tier >= tier_duchy
+					opinion = {
+						target = root
+						value >= blend_in_with_panda_opinion_req_value
+					}
+				}
+			}
+		}
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+		is_available_adult = yes
+	}
+
+	cost = {
+		prestige = {
+			value = 2500
+		}
+		treasury_or_gold = {
+			value = 250
+		}
+	}
+
+	widget = {
+		gui = "decision_view_widget_select_valid_polar_bear_culture"
+		controller = select_scope_object
+		show_from_start = yes
+		decision_to_second_step_button = "SELECT"
+
+		setup_items = {
+			every_culture_global = {
+				limit = {
+					culture_overlaps_geographical_region = world_asia_china
+					has_cultural_pillar = heritage_chinese 
+				}
+				add_to_list = item_list
+			}
+		}
+
+		default_item = {
+			random_culture_global = {
+				limit = {
+					culture_overlaps_geographical_region = world_asia_china
+				}
+				save_scope_as = selected_item
+			}
+		}
+
+		is_item_valid = {
+			scope:actor.culture != this
+			NOT = { has_same_culture_heritage = scope:actor.culture }
+		}
+	}
+
+	effect = {
+		custom_tooltip = {
+			text = blend_with_panda_decision_tt
+			set_variable = {
+				name = special_culture
+				value = scope:selected_item
+			}
+		}
 	}
 	
 	ai_potential = {
